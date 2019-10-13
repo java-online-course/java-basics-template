@@ -1,7 +1,5 @@
 package com.epam.izh.rd.online.service;
 
-import java.util.Arrays;
-
 public class MathService implements IMathService {
 
     /**
