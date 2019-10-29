@@ -1,8 +1,8 @@
 package com.epam.izh.rd.online;
 
 
-import com.epam.izh.rd.online.service.MathService;
-import com.epam.izh.rd.online.service.TextService;
+import com.epam.izh.rd.online.service.SimpleMathService;
+import com.epam.izh.rd.online.service.SimpleTextService;
 
 import java.util.Arrays;
 
@@ -21,7 +21,7 @@ public class JavaBasics {
 
         // --------------------------- MathService --------------------------- //
 
-        MathService mathService = new MathService();
+        SimpleMathService mathService = new SimpleMathService();
 
         // --------------------------- maxFrom --------------------------- //
 
@@ -108,8 +108,8 @@ public class JavaBasics {
 
         // --------------------------- getEvenDigits --------------------------- //
 
-        Integer[] evenDigits = mathService.getEvenDigits(new int[]{-1, -3, 3, -4, 5, 6, 14});
-        Integer[] correctEvenDigits = new Integer[]{-4, 6, 14};
+        int[] evenDigits = mathService.getEvenDigits(new int[]{-1, -3, 3, -4, 5, 6, 14});
+        int[] correctEvenDigits = new int[]{-4, 6, 14};
 
         if (!Arrays.equals(evenDigits, correctEvenDigits)) {
             System.out.println(String.format("Метод getEvenDigits работает неверно. Текущее значение = %s. " +
@@ -136,7 +136,7 @@ public class JavaBasics {
 
         // --------------------------- TextService --------------------------- //
 
-        TextService textService = new TextService();
+        SimpleTextService textService = new SimpleTextService();
 
         // --------------------------- toJumpCase --------------------------- //
 
