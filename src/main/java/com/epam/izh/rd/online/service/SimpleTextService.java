@@ -58,7 +58,7 @@ public class SimpleTextService implements TextService {
      * Например для строки "а роза упала на лапу Азора" вернется true, а для "я не палиндром" false
      */
     @Override
-    public boolean isPalyndrome(String string) {
+    public boolean isPalindrome(String string) {
        return false; //TODO
     }
 }

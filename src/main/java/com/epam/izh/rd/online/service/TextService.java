@@ -10,5 +10,5 @@ public interface TextService {
 
     String toJumpCase(String text);
 
-    boolean isPalyndrome(String string);
+    boolean isPalindrome(String string);
 }
