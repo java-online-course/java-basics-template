@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MathServiceTest {
 
@@ -17,6 +17,13 @@ public class MathServiceTest {
     @BeforeAll
     static void setup() {
         mathService = new SimpleMathService();
+    }
+
+    @ParameterizedTest
+    @MethodSource("com.epam.izh.rd.online.Providers#testCompare")
+    @DisplayName("Тест метода MathService.compare(int value1, int value2)")
+    void testCompare(int value1, int value2, int expected) {
+        assertEquals(expected, mathService.compare(value1, value2));
     }
 
     @Test
@@ -42,7 +49,7 @@ public class MathServiceTest {
     @MethodSource("com.epam.izh.rd.online.Providers#testGetEvenDigitsProvider")
     @DisplayName("Тест метода MathService.getEvenDigits(int[] values)")
     void testGetEvenDigits(int[] param, int[] expected) {
-        assertEquals(expected, mathService.getEvenDigits(param));
+        assertArrayEquals(expected, mathService.getEvenDigits(param));
     }
 
     @ParameterizedTest
@@ -63,7 +70,7 @@ public class MathServiceTest {
     @MethodSource("com.epam.izh.rd.online.Providers#testSortProvider")
     @DisplayName("Тест метода MathService.sort(int[] arr)")
     void testSort(int[] param, int[] expected) {
-        assertEquals(expected, mathService.sort(param));
+        assertArrayEquals(expected, mathService.sort(param));
     }
 
     @ParameterizedTest
@@ -77,6 +84,6 @@ public class MathServiceTest {
     @MethodSource("com.epam.izh.rd.online.Providers#testReverseArrayProvider")
     @DisplayName("Тест метода MathService.reverseArray(int[] arr)")
     void testIsPrimary(int[] param, int[] expected) {
-        assertEquals(expected, mathService.reverseArray(param));
+        assertArrayEquals(expected, mathService.reverseArray(param));
     }
 }

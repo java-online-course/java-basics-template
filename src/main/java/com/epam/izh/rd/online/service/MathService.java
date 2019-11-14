@@ -2,6 +2,8 @@ package com.epam.izh.rd.online.service;
 
 public interface MathService {
 
+    int compare(int value1, int value2);
+
     int maxFrom(int value1, int value2);
 
     int maxFrom(int[] values);
@@ -14,9 +16,9 @@ public interface MathService {
 
     long calcFibonacci(int number);
 
-    int[] sort(int[] arr);
+    int[] sort(int[] values);
 
     boolean isPrimary(int number);
 
-    int[] reverseArray(int[] arr);
+    int[] reverseArray(int[] values);
 }
