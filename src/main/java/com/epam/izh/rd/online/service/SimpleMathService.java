@@ -49,7 +49,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return null;
+        return new int[]{};
     }
 
     /**
@@ -83,7 +83,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return null;
+        return new int[]{};
     }
 
     /**
@@ -104,6 +104,6 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return null;
+        return new int[]{};
     }
 }
