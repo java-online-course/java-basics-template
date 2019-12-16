@@ -100,7 +100,6 @@ public class SimpleMathService implements MathService {
         for (int i = initialVal; i > 0; i--) {
             mult = mult * i;
         }
-
         return mult;
     }
 
@@ -120,17 +119,14 @@ public class SimpleMathService implements MathService {
         if (number == 0) {
             return 0;
         } else {
-
             arrFib[0] = 0;
             arrFib[1] = 1;
             for (int i = 2; i < number + 1; i++) {
                 arrFib[i] = arrFib[i - 1] + arrFib[i - 2];
             }
-
             return arrFib[number];
         }
     }
-
 
     /**
      * Метод возвращает отсортированный по возрастанию массив.
@@ -153,10 +149,8 @@ public class SimpleMathService implements MathService {
                 values[min_i] = tmp;
             }
         }
-
         return values;
     }
-
 
     /**
      * Метод определяет, является ли заданное число простым.
