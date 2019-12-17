@@ -177,11 +177,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        int[] reverseArr = new int[values.length];
-        int j = 0;
-        for (int i = values.length - 1; i >= 0; i--) {
-            reverseArr[j++] = values[i];
+        for (int i = 0; i < values.length / 2; i++) {
+            int tmp = values[i];
+            values[i] = values[values.length - 1 - i];
+            values[values.length - 1 - i] = tmp;
         }
-        return reverseArr;
+                return values;
+
     }
 }
