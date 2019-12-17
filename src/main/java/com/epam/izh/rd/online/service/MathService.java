@@ -18,7 +18,7 @@ public interface MathService {
 
     int[] sort(int[] values);
 
-    boolean isPrimary(int number);
+    void isPrimary(int number);
 
     int[] reverseArray(int[] values);
 }
