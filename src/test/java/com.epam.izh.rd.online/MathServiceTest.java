@@ -41,6 +41,13 @@ public class MathServiceTest {
         assertEquals(8, mathService.maxFrom(param), "Для входных параметров: " + Arrays.toString(param));
     }
 
+    @Test
+    @DisplayName("Тест метода MathService.maxFrom(int[] values)")
+    void testMaxFromArray2() {
+        int[] param = {-1, -3, -5, -7, -8};
+        assertEquals(-1, mathService.maxFrom(param), "Для входных параметров: " + Arrays.toString(param));
+    }
+
     @ParameterizedTest
     @MethodSource("com.epam.izh.rd.online.Providers#testSumProvider")
     @DisplayName("Тест метода MathService.sum(int[] values)")
