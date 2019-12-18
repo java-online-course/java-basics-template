@@ -66,16 +66,22 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        int array[] = new int[values.length];
-        for (int i = 0; i < values.length; i++) {
-            if (values[i] % 2 == 0) {
-                for (int j = 0; j < values.length; j++) {
-                    array[j] = values[i];
-                }
+        int quantiEven =0;
+        for (int i :values) {
+            if (i % 2 ==0){quantiEven++;}
+        }
+        int [] sortedArray = new int [quantiEven];
+        int counterSortedArray = 0;
+        for ( int i :values) {
+            if (i % 2 ==0){
+                sortedArray[counterSortedArray] = i;
+                counterSortedArray++;
             }
         }
-        return array;
+        return sortedArray;
     }
+
+
 
     /**
      * Метод считает факториал из заданного числа.
@@ -134,8 +140,17 @@ public class SimpleMathService implements MathService {
          * Например для числа 22 вернется false, а для числа 23 true.
          */
         @Override
-        public void isPrimary (int number) {
-
+        public boolean isPrimary(int number)  {
+            int temp;
+            boolean isPrime=true;
+            for (int i=2; i<=number/2; i++) {
+                temp = number % i;
+                if (temp == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            return isPrime;
         }
 
         /**
@@ -145,6 +160,16 @@ public class SimpleMathService implements MathService {
          */
         @Override
         public int[] reverseArray ( int[] values){
-            return new int[]{};
+            int n = values.length;
+            int temp;
+
+            for (int i = 0; i < n/2; i++) {
+
+                temp = values[n-i-1];
+                values[n-i-1] = values[i];
+                values[i] = temp;
+
+            }
+            return values;
         }
     }
