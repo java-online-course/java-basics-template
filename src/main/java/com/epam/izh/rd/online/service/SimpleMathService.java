@@ -60,7 +60,7 @@ public class SimpleMathService implements MathService {
         int[] evenNumbers = new int[values.length];
         int evenNumbersCount = 0;
         for (int i = 0, j = 0; i < values.length; i++) {
-            if (values[i] % 2 == 0){
+            if (values[i] % 2 == 0) {
                 evenNumbers[j] = values[i];
                 j++;
                 evenNumbersCount++;
@@ -78,7 +78,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        if (initialVal > 1) {
+            return initialVal * calcFactorial(--initialVal);
+        } else {
+            return 1;
+        }
     }
 
     /**
