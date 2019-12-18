@@ -57,7 +57,18 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int[] evenNumbers = new int[values.length];
+        int evenNumbersCount = 0;
+        for (int i = 0, j = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0){
+                evenNumbers[j] = values[i];
+                j++;
+                evenNumbersCount++;
+            }
+        }
+        int[] evenNumbersTrimmedArray = new int[evenNumbersCount];
+        System.arraycopy(evenNumbers, 0, evenNumbersTrimmedArray, 0, evenNumbersCount);
+        return evenNumbersTrimmedArray;
     }
 
     /**
