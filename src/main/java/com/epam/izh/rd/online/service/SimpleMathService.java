@@ -22,7 +22,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        return value1 >= value2 ? value1 : value2;
     }
 
     /**
