@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.Arrays;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -94,10 +96,37 @@ public class SimpleMathService implements MathService {
      * <p>
      * Для числа 9 метод должен вернуть 34
      * Для числа 0 метод должен вернуть 0
+     * Algorithm complexity O(log(n))
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number == 0) {
+            return 0;
+        }
+        long[] matrixResult = new long[]{0, 1, 1, 1};
+        long[] matrix2 = new long[]{1, 0, 0, 1};
+        while (number > 1) {
+            if (number % 2 == 1) {
+                matrix2 = multiplyMatrices(matrixResult, matrix2);
+            }
+            matrixResult = multiplyMatrices(matrixResult, matrixResult);
+            number /= 2;
+        }
+        matrixResult = multiplyMatrices(matrixResult, matrix2);
+        return matrixResult[1];
+    }
+
+    /**
+     * Method for multiplying matrices.
+     */
+
+    public long[] multiplyMatrices(long[] matrix1, long[] matrix2) {
+        long[] resultMatrix = new long[4];
+        resultMatrix[0] = matrix1[0] * matrix2[0] + matrix1[1] * matrix2[2];
+        resultMatrix[1] = matrix1[0] * matrix2[1] + matrix1[1] * matrix2[3];
+        resultMatrix[2] = matrix1[2] * matrix2[0] + matrix1[3] * matrix2[2];
+        resultMatrix[3] = matrix1[2] * matrix2[1] + matrix1[3] * matrix2[3];
+        return resultMatrix;
     }
 
     /**
