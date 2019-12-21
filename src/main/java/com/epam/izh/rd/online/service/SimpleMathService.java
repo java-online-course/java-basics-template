@@ -1,6 +1,7 @@
 package com.epam.izh.rd.online.service;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class SimpleMathService implements MathService {
 
@@ -135,7 +136,51 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        return quickSort(values, 0, values.length - 1);
+    }
+
+    public int[] quickSort(int[] values, int begin, int end) {
+        if (end - begin <= 1) {
+            if (begin >= 0 && begin <= end && values[begin] > values[end]) {
+                swapValues(values, begin, end);
+            }
+            return values;
+        }
+
+        int pivotIndex = begin;
+        int pivot = values[pivotIndex];
+
+        for (int i = begin + 1, j = end; i != j; ) {
+            if (values[i] >= pivot) {
+                if (values[j] <= pivot) {
+                    swapValues(values, i, j);
+                    pivotIndex = i;
+                    i++;
+                } else {
+                    j--;
+                }
+            } else {
+                pivotIndex = i;
+                i++;
+            }
+            if (i == end) {
+                pivotIndex = i;
+            }
+        }
+
+        if (values[begin] > values[pivotIndex]) {
+            swapValues(values, begin, pivotIndex);
+        }
+
+        quickSort(values, begin, pivotIndex - 1);
+        quickSort(values, pivotIndex + 1, end);
+        return values;
+    }
+
+    public void swapValues(int[] array, int value1, int index2) {
+        int temp = array[value1];
+        array[value1] = array[index2];
+        array[index2] = temp;
     }
 
     /**
