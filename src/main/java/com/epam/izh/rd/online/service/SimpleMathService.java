@@ -1,8 +1,5 @@
 package com.epam.izh.rd.online.service;
 
-import java.util.Arrays;
-import java.util.Random;
-
 public class SimpleMathService implements MathService {
 
     /**
@@ -191,8 +188,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        for (int i = 2; i < number ; i++) {
-            if (number % i == 0){
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
                 return false;
             }
         }
@@ -206,6 +203,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length / 2; i++) {
+            int tempForSwap = values[i];
+            values[i] = values[values.length - i - 1];
+            values[values.length - i - 1] = tempForSwap;
+        }
+        return values;
     }
 }
