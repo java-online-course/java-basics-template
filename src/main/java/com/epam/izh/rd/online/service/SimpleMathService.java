@@ -94,7 +94,8 @@ public class SimpleMathService implements MathService {
      * <p>
      * Для числа 9 метод должен вернуть 34
      * Для числа 0 метод должен вернуть 0
-     * Algorithm complexity O(log(n))
+     * Algorithm complexity O(log(n)).
+     * Matrix exponentiation method
      */
     @Override
     public long calcFibonacci(int number) {
@@ -160,6 +161,7 @@ public class SimpleMathService implements MathService {
                 pivotIndex = i;
                 i++;
             }
+
             if (i == end) {
                 pivotIndex = i;
             }
