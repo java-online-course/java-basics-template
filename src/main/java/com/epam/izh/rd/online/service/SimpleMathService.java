@@ -112,7 +112,18 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        int n0 = 0;
+        int n1 = 1;
+        int n2 = 1;
+        if (number == 0) {
+            return n0;
+        }
+        for (int i = 2; i <= number; i++) {
+            n2 = n0 + n1;
+            n0 = n1;
+            n1 = n2;
+        }
+        return n2;
     }
 
     /**
