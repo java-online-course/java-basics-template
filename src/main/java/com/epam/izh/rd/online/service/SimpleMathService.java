@@ -13,7 +13,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        if  (value1 < value2) {
+            return -1;
+        } else if (value1 > value2) {
+            return 1;
+        } else  {
+            return 0;
+        }
     }
 
     /**
@@ -22,7 +28,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        if (value1 > value2) {
+            return value1;
+        } else {
+            return value2;
+        }
     }
 
     /**
@@ -31,7 +41,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int max = 0;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] > max) {
+                max = values[i];
+            }
+        }
+        return max;
     }
 
     /**
@@ -40,7 +56,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int total = 0;
+        for (int i = 0; i < values.length; i++) {
+            total += values[i];
+        }
+        return total;
     }
 
     /**
@@ -49,7 +69,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int length = 0;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0) {
+                length++;
+            }
+        }
+        int[] evens = new int[length];
+        int index = 0;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0) {
+                evens[index] = values[i];
+                index++;
+            }
+        }
+        return evens;
     }
 
     /**
@@ -59,7 +93,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int factorial = 1;
+        for (int i = 1; i <= initialVal; i++) {
+            factorial *= i;
+        }
+        return factorial;
     }
 
     /**
@@ -74,7 +112,18 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        int n0 = 0;
+        int n1 = 1;
+        int n2 = 1;
+        if (number == 0) {
+            return n0;
+        }
+        for (int i = 2; i <= number; i++) {
+            n2 = n0 + n1;
+            n0 = n1;
+            n1 = n2;
+        }
+        return n2;
     }
 
     /**
@@ -83,7 +132,17 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        int temp;
+        for (int i = 0; i < values.length; i++) {
+            for (int j = 0; j < values.length - 1 - i; j++) {
+                if (values[j] > values[j + 1]) {
+                    temp = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = temp;
+                }
+            }
+        }
+        return values;
     }
 
     /**
@@ -94,7 +153,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        boolean isPrime;
+        if (number <= 1) return false;
+        if (number <= 3) return true;
+        isPrime = (number % 2 != 0 && number % 3 != 0);
+        return isPrime;
     }
 
     /**
@@ -104,6 +167,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int temp;
+        for (int i = 0; i < values.length / 2; i++) {
+            temp = values[i];
+            values[i] = values[values.length - 1 - i];
+            values[values.length - 1 - i] = temp;
+        }
+        return values;
     }
 }
