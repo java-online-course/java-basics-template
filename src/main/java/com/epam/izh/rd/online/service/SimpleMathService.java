@@ -153,7 +153,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        boolean isPrime;
+        if (number <= 1) return false;
+        if (number <= 3) return true;
+        isPrime = (number % 2 != 0 && number % 3 != 0);
+        return isPrime;
     }
 
     /**
