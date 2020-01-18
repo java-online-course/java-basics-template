@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.Arrays;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -12,8 +14,14 @@ public class SimpleMathService implements MathService {
      * Например для (3, 1) метод должен вернуть 1;
      */
     @Override
-    public int compare(int value1, int value2) {
-        return -2;
+    public int compare(int value1, int value2)
+    {
+        if(value1 < value2)
+            return -1;
+        else if (value1 > value2)
+            return 1;
+        else
+            return 0;
     }
 
     /**
@@ -21,8 +29,9 @@ public class SimpleMathService implements MathService {
      * Например для списка (-1, 2) метод должен вернуть 2
      */
     @Override
-    public int maxFrom(int value1, int value2) {
-        return -1;
+    public int maxFrom(int value1, int value2)
+    {
+        return value1 > value2 ? value1 : value2;
     }
 
     /**
@@ -30,8 +39,12 @@ public class SimpleMathService implements MathService {
      * Например для списка {-1, -3, 4, 8, 5, 22, -5} метод должен вернуть 22
      */
     @Override
-    public int maxFrom(int[] values) {
-        return -1;
+    public int maxFrom(int[] values)
+    {
+        int lMax = values[0];
+        for(int i = 0; i < values.length; i++)
+            lMax = maxFrom(lMax, values[i]);
+        return lMax;
     }
 
     /**
@@ -39,8 +52,12 @@ public class SimpleMathService implements MathService {
      * Например для списка {-1, -3, 4, 8, 5, 22, -5} метод должен вернуть 30
      */
     @Override
-    public int sum(int[] values) {
-        return -1;
+    public int sum(int[] values)
+    {
+        int sum = 0;
+        for(int i = 0; i < values.length; i++)
+            sum+=values[i];
+        return sum;
     }
 
     /**
@@ -48,8 +65,21 @@ public class SimpleMathService implements MathService {
      * Например для списка {-1, -3, 4, 8, 5, 22, 17} метод должен вернуть {4, 8, 22}
      */
     @Override
-    public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+    public int[] getEvenDigits(int[] values)
+    {
+       int eCount = 0;
+
+       for(int i = 0; i < values.length; i++)
+           if(values[i] % 2 == 0)
+               eCount++;
+
+       int[] arr = new int[eCount];
+       eCount = 0;
+
+       for(int i = 0; i < values.length; i++)
+           if (values[i] % 2 == 0)
+               arr[eCount++] = values[i];
+       return arr;
     }
 
     /**
@@ -58,8 +88,9 @@ public class SimpleMathService implements MathService {
      * Факториал 0 должен быть равен 1.
      */
     @Override
-    public long calcFactorial(int initialVal) {
-        return -1L;
+    public long calcFactorial(int initialVal)
+    {
+        return initialVal == 0 ? 1L : initialVal * calcFactorial(initialVal -1);
     }
 
     /**
@@ -74,7 +105,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        long n = 1L, n_1 = 0L;
+        for(int i = 0; i < number; i++)
+        {
+            n += n_1;
+            n_1= n - n_1;
+        }
+        return n_1;
     }
 
     /**
@@ -82,8 +119,10 @@ public class SimpleMathService implements MathService {
      * Например для массива {-1, -3, 4, 8, 5, 22, -5} метод должен вернуть {-5, -3, -1, 4, 5, 8, 22}
      */
     @Override
-    public int[] sort(int[] values) {
-        return new int[]{};
+    public int[] sort(int[] values)
+    {
+        Arrays.sort(values);
+        return values;
     }
 
     /**
@@ -94,7 +133,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        for(int i = 2; i*i <= number; i++)
+            if(number % i == 0)
+                return false;
+        return true;
     }
 
     /**
@@ -104,6 +146,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int[] arr = new int[values.length];
+        for(int i = 0;i < values.length; i++)
+            arr[i] = values[values.length - i - 1];
+        return arr;
     }
 }
