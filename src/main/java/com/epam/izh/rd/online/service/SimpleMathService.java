@@ -36,8 +36,15 @@ public class SimpleMathService implements MathService {
      * Например для списка {-1, -3, 4, 8, 5, 22, -5} метод должен вернуть 22
      */
     @Override
+    // Method for getting the maximum value , using a for loop (one of several methods, such as, example: using Arrays.sort method, etc)
     public int maxFrom(int[] values) {
-        return -1;
+        int maxValue = values[0];
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] > maxValue) {
+                maxValue = values[i];
+            }
+        }
+        return maxValue;
     }
 
     /**
