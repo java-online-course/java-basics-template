@@ -1,4 +1,5 @@
 package com.epam.izh.rd.online.service;
+
 import java.util.Arrays;
 
 public class SimpleMathService implements MathService {
@@ -7,7 +8,7 @@ public class SimpleMathService implements MathService {
      * Метод возвращает 0, если value1 = value2.
      * Метод возвращает -1, если value1 < value2.
      * Метод возвращает 1, если value1 > value2.
-     *
+     * <p>
      * Например для (-1, -1) метод должен вернуть 0;
      * Например для (-3, -1) метод должен вернуть -1;
      * Например для (3, 1) метод должен вернуть 1;
@@ -70,14 +71,14 @@ public class SimpleMathService implements MathService {
         int sizeEvenArray = 0;
         for (int i = 0; i < values.length; i++) {
             if (values[i] % 2 == 0) {
-            sizeEvenArray++;
+                sizeEvenArray++;
             }
         }
-        int [] evenArray = new int [sizeEvenArray];
+        int[] evenArray = new int[sizeEvenArray];
         int count = 0;
         for (int i = 0; i < values.length; i++) {
-            if (values [i] % 2 == 0) {
-                evenArray [count] = values [i];
+            if (values[i] % 2 == 0) {
+                evenArray[count] = values[i];
                 count++;
             }
         }
@@ -100,11 +101,11 @@ public class SimpleMathService implements MathService {
 
     /**
      * Метод возвращает число, которе находится на заданной позиции (счет начинается с нуля) в ряду фибоначчи.
-     *
+     * <p>
      * Ряд фибоначчи - ряд, следующие элементы которого состоят из суммы двух предыдущих.
      * Ряд начинается 0 и 1.
      * Пример 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ...
-     *
+     * <p>
      * Для числа 9 метод должен вернуть 34
      * Для числа 0 метод должен вернуть 0
      */
@@ -124,15 +125,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        int [] CopiedArray = values.clone ();
-        Arrays.sort (CopiedArray);
+        int[] CopiedArray = values.clone();
+        Arrays.sort(CopiedArray);
         return CopiedArray;
     }
 
     /**
      * Метод определяет, является ли заданное число простым.
      * Простое число - число, которое делится только на 1 и на само себя.
-     *
+     * <p>
      * Например для числа 22 вернется false, а для числа 23 true.
      */
     @Override
@@ -152,7 +153,7 @@ public class SimpleMathService implements MathService {
             return false;
         }
         // Перебираем остальные числа нечетные
-        for(int i = 3;i*i <= number;i += 2) {
+        for (int i = 3; i * i <= number; i += 2) {
             if (number % i == 0)
                 return false;
         }
@@ -161,7 +162,7 @@ public class SimpleMathService implements MathService {
 
     /**
      * Метод возвращает массив, в котором элементы расположены в обратном порядке.
-     *
+     * <p>
      * Например для массива {-1, -3, 4, 8, 5, 22, -5} метод вернет {-5, 22, 5, 8, 4, -3, -1}
      */
     @Override
@@ -170,10 +171,10 @@ public class SimpleMathService implements MathService {
      * (one of several methods, such as, example: using ArrayList with Collections.reverse() method, etc)
      */
     public int[] reverseArray(int[] values) {
-        for(int i=0; i < values.length/2; i++) {
+        for (int i = 0; i < values.length / 2; i++) {
             int tempArray = values[i];
-            values[i] = values[values.length -i -1];
-            values[values.length -i -1] = tempArray;
+            values[i] = values[values.length - i - 1];
+            values[values.length - i - 1] = tempArray;
         }
         return values;
     }
