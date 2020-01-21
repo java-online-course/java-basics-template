@@ -131,8 +131,27 @@ public class SimpleMathService implements MathService {
      * Например для числа 22 вернется false, а для числа 23 true.
      */
     @Override
+    /** Метод определения, является ли заданное число простым, без использования средств, имеющихся в Java8.
+     * Более простой способ заключается в использовании теста Рабина-Миллера в классe BigInteger.
+     */
     public boolean isPrimary(int number) {
-        return false;
+        if (number <= 1) {
+            return false;
+        }
+        // Число 2 является простым
+        if (number == 2) {
+            return true;
+        }
+        // Проверяем на четность
+        if (number % 2 == 0) {
+            return false;
+        }
+        // Перебираем остальные числа нечетные
+        for(int i = 3;i*i <= number;i += 2) {
+            if (number % i == 0)
+                return false;
+        }
+        return true;
     }
 
     /**
