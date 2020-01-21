@@ -141,7 +141,16 @@ public class SimpleMathService implements MathService {
      * Например для массива {-1, -3, 4, 8, 5, 22, -5} метод вернет {-5, 22, 5, 8, 4, -3, -1}
      */
     @Override
+    /**
+     *  Method reverse array in place. This algorithm iterate over array and swap elements until you reach the midpoint.
+     * (one of several methods, such as, example: using ArrayList with Collections.reverse() method, etc)
+     */
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        for(int i=0; i < values.length/2; i++) {
+            int tempArray = values[i];
+            values[i] = values[values.length -i -1];
+            values[values.length -i -1] = tempArray;
+        }
+        return values;
     }
 }
