@@ -1,4 +1,5 @@
 package com.epam.izh.rd.online.service;
+import java.util.Arrays;
 
 public class SimpleMathService implements MathService {
 
@@ -118,7 +119,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        int [] CopiedArray = values.clone ();
+        Arrays.sort (CopiedArray);
+        return CopiedArray;
     }
 
     /**
