@@ -110,7 +110,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+
+        if (number == 0) {
+            return 0;
+        }
+        // Метод calcFibonacci (int number) вызывает сам себя, вычисляя промежуточные результаты, после этого возвращает сумму. Рекурсивный подход.
+        return (number != 1) ? calcFibonacci(number - 1) + calcFibonacci(number - 2) : 1;
     }
 
     /**
