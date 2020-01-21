@@ -67,14 +67,14 @@ public class SimpleMathService implements MathService {
     @Override
     public int[] getEvenDigits(int[] values) {
         int sizeEvenArray = 0;
-        for (int i = 0; i < values.length; i++){
+        for (int i = 0; i < values.length; i++) {
             if (values[i] % 2 == 0) {
             sizeEvenArray++;
             }
         }
         int [] evenArray = new int [sizeEvenArray];
         int count = 0;
-        for (int i = 0; i < values.length; i++){
+        for (int i = 0; i < values.length; i++) {
             if (values [i] % 2 == 0) {
                 evenArray [count] = values [i];
                 count++;
@@ -90,7 +90,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int resultFactorial = 1;
+        for (int i = 1; i <= initialVal; i++) {
+            resultFactorial *= i;
+        }
+        return resultFactorial;
     }
 
     /**
