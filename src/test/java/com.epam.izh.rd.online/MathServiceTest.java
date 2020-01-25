@@ -86,7 +86,7 @@ public class MathServiceTest {
     @ParameterizedTest
     @MethodSource("com.epam.izh.rd.online.Providers#testReverseArrayProvider")
     @DisplayName("Тест метода MathService.reverseArray(int[] arr)")
-    void testIsPrimary(int[] param, int[] expected) {
+    void testReverseArray(int[] param, int[] expected) {
         assertArrayEquals(expected, mathService.reverseArray(param), "Для входных параметров: " + Arrays.toString(param));
     }
 }
