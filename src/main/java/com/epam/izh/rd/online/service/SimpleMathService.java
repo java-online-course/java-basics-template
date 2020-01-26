@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.Arrays;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,7 +15,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        return Integer.compare(value1, value2);
     }
 
     /**
@@ -22,7 +24,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        if (value1 < value2){
+            return value2;
+        } else if (value1 > value2){
+            return value1;
+        } else{
+            return 0;
+        }
     }
 
     /**
@@ -31,7 +39,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        Arrays.sort(values);
+        return values[values.length-1];
     }
 
     /**
@@ -40,7 +49,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int m = 0;
+        for (int value : values) {
+            m += value;
+        }
+        return m;
     }
 
     /**
@@ -49,7 +62,28 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length; i++){
+            if (!(values[i] % 2 == 0)){
+                values[i] = 0;
+            }
+        }
+        int m;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == 0 && i != values.length-1) {
+                m = values[i + 1];
+                values[i + 1] = values[i];
+                values[i] = m;
+            }
+        }
+        int t = 0;
+        for (int value : values) {
+            if (value != 0) {
+                t++;
+            }
+        }
+        int [] array = new int[t];
+        System.arraycopy(values, 0, array, 0, t);
+        return array;
     }
 
     /**
@@ -59,7 +93,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int result = 1;
+        for (int i = 1; i <= initialVal; i++){
+            result = result * i;
+        }
+        return result;
     }
 
     /**
@@ -74,7 +112,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number == 0){
+            return 0;
+        }
+        if (number == 1){
+            return 1;
+        }
+        else{
+            return calcFibonacci(number - 1) + calcFibonacci(number - 2);
+        }
     }
 
     /**
@@ -83,7 +129,19 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        boolean it = true;
+        while (it) {
+            it = false;
+            for (int i = 1; i < values.length; i++) {
+                if (values[i] < values[i - 1]) {
+                    int m = values[i - 1];
+                    values[i - 1] = values[i];
+                    values[i] = m;
+                    it = true;
+                }
+            }
+        }
+        return values;
     }
 
     /**
@@ -94,7 +152,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        boolean isSimple = true;
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                isSimple = false;
+                break;
+            }
+        }
+        return isSimple;
     }
 
     /**
@@ -104,6 +169,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length/2; i++) {
+            int m = values[values.length - 1 - i];
+            values[values.length - 1 - i] = values[i];
+            values[i] = m;
+        }
+        return values;
     }
 }
