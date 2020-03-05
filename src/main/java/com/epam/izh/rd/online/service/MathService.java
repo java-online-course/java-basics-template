@@ -14,7 +14,7 @@ public interface MathService {
 
     long calcFactorial(int initialVal);
 
-    long calcFibonacci(int number);
+    int calcFibonacci(int number);
 
     int[] sort(int[] values);
 
