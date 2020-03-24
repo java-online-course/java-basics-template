@@ -21,4 +21,6 @@ public interface MathService {
     boolean isPrimary(int number);
 
     int[] reverseArray(int[] values);
+
+
 }
