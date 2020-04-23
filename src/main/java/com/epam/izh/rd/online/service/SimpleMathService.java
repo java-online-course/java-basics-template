@@ -1,5 +1,9 @@
 package com.epam.izh.rd.online.service;
 
+
+
+
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,7 +17,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        if(value1 < value2){
+            return -1;
+        }
+        else if(value1 > value2){
+            return 1;
+        }
+        else
+            return 0;
+
     }
 
     /**
@@ -22,7 +34,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        if(value1 > value2)
+            return value1;
+        else
+            return value2;
     }
 
     /**
@@ -31,7 +46,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int max = 0;
+        for(int i = 0; i < values.length; i++){
+            if(values[i] > max){
+                max = values[i];
+            }
+        }
+        return max;
     }
 
     /**
@@ -40,7 +61,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int sum = 0;
+        for (int i = 0; i < values.length; i++){
+            sum += values[i];
+        }
+        return sum;
     }
 
     /**
@@ -49,7 +74,23 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+
+        int size = 0;
+        for(int i = 0; i < values.length; i++){
+            if (values[i] % 2 == 0){
+                size++;
+            }
+        }
+
+        int[] list = new int[size];
+        int index = 0;
+
+        for(int i = 0; i < values.length; i++){
+            if (values[i] % 2 == 0){
+                list[index++] = values[i];
+            }
+        }
+        return list;
     }
 
     /**
@@ -59,7 +100,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int f = 1;
+        for(int i = 1; i <= initialVal; i++){
+            if (initialVal == 0)
+                f = 1;
+            else {
+                f = f * i;
+            }
+        }
+        return f;
     }
 
     /**
@@ -74,7 +123,17 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        int a = 0;
+        int b = 1;
+        if (number == 0)
+            return 0;
+
+        for (int i = 2; i <= number; ++i) {
+            int next = a + b;
+            a = b;
+            b = next;
+        }
+        return b;
     }
 
     /**
@@ -83,7 +142,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        for(int i = values.length - 1; i > 0; i--){
+            for(int j = 0; j < i; j++){
+                if(values[j] > values[j + 1]){
+                    int tmp = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = tmp;
+                }
+            }
+        }
+        return values;
     }
 
     /**
@@ -94,8 +162,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
+
 
     /**
      * Метод возвращает массив, в котором элементы расположены в обратном порядке.
@@ -104,6 +178,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int n = values.length;
+        int temp;
+        for (int i = 0; i < n/2; i++){
+            temp = values[n - i - 1];
+            values[n - i - 1] = values[i];
+            values[i] = temp;
+        }
+        return values;
+
+
     }
 }
