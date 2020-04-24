@@ -29,7 +29,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+       int maxValue =  Math.max(value1, value2);
+       return maxValue;
     }
 
     /**
