@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.Arrays;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -20,7 +22,6 @@ public class SimpleMathService implements MathService {
         } else {
             return 1;
         }
-
     }
 
     /**
@@ -48,7 +49,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int sum = Arrays.stream(values).sum();
+        return sum;
     }
 
     /**
@@ -57,7 +59,22 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int even = 0;
+        int index = 0;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0) {
+                even++;
+            }
+        }
+        int[] evenNums = new int[even];
+
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0) {
+                evenNums[index] = values[i];
+                index++;
+            }
+        }
+        return evenNums;
     }
 
     /**
@@ -67,7 +84,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        if (initialVal == 0) {
+            return 1;
+        } else {
+            return initialVal * calcFactorial(initialVal - 1);
+        }
     }
 
     /**
