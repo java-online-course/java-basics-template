@@ -45,7 +45,6 @@ public class SimpleMathService implements MathService {
         for (int i = 0; i < values.length; i++) {
             max = max > values[i] ? max : values[i];
         }
-
         return max;
     }
 
