@@ -1,5 +1,6 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SimpleMathService implements MathService {
@@ -30,8 +31,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-       int maxValue =  Math.max(value1, value2);
-       return maxValue;
+        int maxValue = Math.max(value1, value2);
+        return maxValue;
     }
 
     /**
@@ -40,7 +41,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int max = values[0];
+        for (int i = 0; i < values.length; i++) {
+            max = max > values[i] ? max : values[i];
+        }
+        return max;
     }
 
     /**
@@ -103,16 +108,24 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number == 0) {
+            return 0;
+        }
+        if (number == 1) {
+            return 1;
+        } else {
+            return calcFibonacci(number - 1) + calcFibonacci(number - 2);
+        }
     }
 
     /**
      * Метод возвращает отсортированный по возрастанию массив.
      * Например для массива {-1, -3, 4, 8, 5, 22, -5} метод должен вернуть {-5, -3, -1, 4, 5, 8, 22}
      */
-    @Override
+
     public int[] sort(int[] values) {
-        return new int[]{};
+        Arrays.sort(values);
+        return values;
     }
 
     /**
@@ -123,7 +136,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        boolean result = true;
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -133,6 +153,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length / 2; i++) {
+            int tmp = values[i];
+            values[i] = values[values.length - i - 1];
+            values[values.length - i - 1] = tmp;
+        }
+        return values;
     }
 }
