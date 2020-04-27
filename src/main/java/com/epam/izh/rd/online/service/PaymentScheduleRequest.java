@@ -9,12 +9,12 @@ import java.util.List;
 public class PaymentScheduleRequest {
 
     /**
-     * Размер заемных средств
+     * Размер заемных средств  amount - количество
      */
     private BigDecimal amount;
 
     /**
-     * Размер ипотечной ставки
+     * Размер ипотечной ставки  interestRate-процентная ставка
      */
     private BigDecimal interestRate;
 
