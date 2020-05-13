@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.Arrays;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,7 +15,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        if (value1 == value2) {
+           return 0;
+        }else if (value1 < value2){
+           return -1;
+        }else{
+            return 1;
+        }
     }
 
     /**
@@ -22,7 +30,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        if (value1 > value2){
+            return value1;
+        }else{
+            return value2;
+        }
+
     }
 
     /**
@@ -31,7 +44,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int max = 0;
+
+        for (int i = 0; i<values.length; i++){
+            int element = values [i];
+            if (element >= max){
+                max = element;
+            }
+        }return max;
     }
 
     /**
@@ -40,7 +60,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int summa = 0;
+
+        for (int i = 0; i < values.length; i++){
+            summa += values[i];
+        }
+        return summa;
     }
 
     /**
@@ -49,7 +74,30 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+
+        int a = 0;
+
+        for (int i = 0; i < values.length; i++){
+            if (values[i] % 2==0) {
+                a++;
+            }
+        }//System.out.println(a)
+
+        int[] massiv = new int [a];
+        //System.out.println(massiv.length);
+
+        int c=0;
+
+        for (int i=0; i<values.length; i++){
+            if (values[i] % 2==0){
+                massiv [c] = values[i];
+                c++;
+            }
+
+        }
+        //System.out.println(Arrays.toString(massiv));
+        return massiv;
+
     }
 
     /**
@@ -59,7 +107,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int rez = 1;
+        int i;
+        for (i=1; i<=initialVal; i++){
+            rez = rez * i;
+        };
+
+        return rez;
     }
 
     /**
@@ -74,7 +128,19 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        /*int[] arr = new int [number+1];
+
+        arr[0]=0;
+        arr[1]=1;
+
+        for (int i=2; i<=number; i++)
+            arr[i] = arr [i-1] + arr [i-2];
+        return  arr[number];*/
+
+        if (number <= 1){
+            return number;
+
+        }return calcFibonacci(number - 1) + calcFibonacci(number - 2);
     }
 
     /**
@@ -83,7 +149,23 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+         int a;
+         for (int i=0; i<values.length; i++){
+
+             for (int j=0; j<values.length; j++){
+
+                 if (j==values.length-1){
+                     break;
+                 }else if (values[j] > values[j+1]){
+                     a = values [j+1];
+                     values [j+1] = values [j];
+                     values [j] = a;
+                 }
+             }
+         }
+
+
+        return values;
     }
 
     /**
@@ -94,8 +176,33 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
-    }
+
+        int n = 7400;
+        int [] arr = new int [n];
+        boolean [] arrBin = new boolean[n];
+
+
+        for (int i = 0; i<n; i++){
+            arr[i]=i;
+            if (arr[i]!=1){
+                arrBin[i] = true;
+            }
+
+        }
+        for (int j = 2; j*j<n; j++){
+
+            for (int k = j*j; k<n; k+=j){
+                arrBin[k] = false;
+                arr[k]=1;
+            }
+        }arrBin[1] = true;//for (int i = 0; i<n; i++){
+
+
+        return arrBin[number];
+
+        }
+
+
 
     /**
      * Метод возвращает массив, в котором элементы расположены в обратном порядке.
@@ -104,6 +211,20 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+
+        int[] arr = new int [values.length];
+        int j = values.length - 1;
+
+        for (int i=0; i<values.length; i++){
+            if (j<0){
+                break;
+            }else {
+                arr[j] = values [i];
+                j--;
+            }
+
+        }
+
+        return arr;
     }
 }
