@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.Arrays;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,7 +15,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        return Integer.compare(value1, value2);
     }
 
     /**
@@ -22,7 +24,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        return Integer.max(value1, value2);
     }
 
     /**
@@ -31,7 +33,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        return values.length > 0 ? Arrays.stream(values).max().getAsInt() : 0;
     }
 
     /**
@@ -40,7 +42,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        return Arrays.stream(values).sum();
     }
 
     /**
@@ -49,7 +51,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        return Arrays.stream(values).filter(e -> e % 2 == 0).toArray();
     }
 
     /**
@@ -59,7 +61,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int sum = 1;
+        for (int i = 1; i != initialVal + 1; i++) {
+            sum *= i;
+        }
+        return sum;
     }
 
     /**
@@ -74,7 +80,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        int fib = 0;
+        int pos1 = 0;
+        int pos2 = 1;
+        for (int i = 0; i < number; i++) {
+            fib = pos1 + pos2;
+            pos2 = pos1;
+            pos1 = fib;
+        }
+        return fib;
     }
 
     /**
@@ -83,7 +97,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        return Arrays.stream(values).sorted().toArray();
     }
 
     /**
@@ -94,7 +108,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        int[] del = {2, 3, 4, 5, 6, 7, 8, 9};
+        int count = 0;
+        for (int i : del) {
+            if (number % i == 0 && number - i != 0) {
+                count++;
+                break;
+            }
+        }
+        return count == 0;
     }
 
     /**
@@ -104,6 +126,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int[] array = new int[values.length];
+        for (int i = 0, j = values.length-1; j >= 0 ; i++, j--) {
+            array[i] = values[j];
+        }
+        return array;
     }
 }
