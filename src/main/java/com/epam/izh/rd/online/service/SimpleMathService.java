@@ -1,19 +1,25 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class SimpleMathService implements MathService {
 
     /**
      * Метод возвращает 0, если value1 = value2.
      * Метод возвращает -1, если value1 < value2.
      * Метод возвращает 1, если value1 > value2.
-     *
+     * <p>
      * Например для (-1, -1) метод должен вернуть 0;
      * Например для (-3, -1) метод должен вернуть -1;
      * Например для (3, 1) метод должен вернуть 1;
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        return Integer.compare(value1, value2);
     }
 
     /**
@@ -22,7 +28,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        return Math.max(value1, value2);
     }
 
     /**
@@ -31,7 +37,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        Arrays.sort(values);
+        return values[values.length - 1];
     }
 
     /**
@@ -40,7 +47,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int sum = 0;
+        for (int value : values) {
+            sum += value;
+        }
+        return sum;
     }
 
     /**
@@ -49,7 +60,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        List<Integer> resultList = new ArrayList<>();
+        for (int value : values) {
+            if (value % 2 == 0) {
+                resultList.add(value);
+            }
+        }
+        return resultList
+                .stream()
+                .mapToInt(i -> i)
+                .toArray();
     }
 
     /**
@@ -59,22 +79,37 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        long result = 1;
+        for (int i = 1; i <= initialVal; i++) {
+            result = result * i;
+        }
+        return result;
     }
 
     /**
      * Метод возвращает число, которе находится на заданной позиции (счет начинается с нуля) в ряду фибоначчи.
-     *
+     * <p>
      * Ряд фибоначчи - ряд, следующие элементы которого состоят из суммы двух предыдущих.
      * Ряд начинается 0 и 1.
      * Пример 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ...
-     *
+     * <p>
      * Для числа 9 метод должен вернуть 34
      * Для числа 0 метод должен вернуть 0
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number == 0) {
+            return 0;
+        } else if (number == 1) {
+            return 1;
+        }
+        List<Long> fibonacciList = new ArrayList<>();
+        fibonacciList.add(0L);
+        fibonacciList.add(1L);
+        for (int i = 2; i <= number; i++) {
+            fibonacciList.add(fibonacciList.get(i - 1) + fibonacciList.get(i - 2));
+        }
+        return fibonacciList.get(number);
     }
 
     /**
@@ -83,27 +118,39 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        Arrays.sort(values);
+        return values;
     }
 
     /**
      * Метод определяет, является ли заданное число простым.
      * Простое число - число, которое делится только на 1 и на само себя.
-     *
+     * <p>
      * Например для числа 22 вернется false, а для числа 23 true.
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        List<Integer> divisionList = new ArrayList<>();
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                divisionList.add(i);
+            }
+        }
+        return divisionList.size() == 2;
     }
 
     /**
      * Метод возвращает массив, в котором элементы расположены в обратном порядке.
-     *
+     * <p>
      * Например для массива {-1, -3, 4, 8, 5, 22, -5} метод вернет {-5, 22, 5, 8, 4, -3, -1}
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        List<Integer> valuesList = Arrays.stream(values)
+                .boxed()
+                .collect(Collectors.toList());
+
+        Collections.reverse(valuesList);
+        return valuesList.stream().mapToInt(i -> i).toArray();
     }
 }
