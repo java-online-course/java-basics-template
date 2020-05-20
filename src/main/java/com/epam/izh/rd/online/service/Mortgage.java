@@ -44,6 +44,9 @@ public class Mortgage {
      */
     private Realty realty;
 
+
+
+
     public Product getProduct() {
         return product;
     }
