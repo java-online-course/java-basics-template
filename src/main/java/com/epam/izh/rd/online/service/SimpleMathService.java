@@ -1,5 +1,10 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,7 +18,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        if(value1==value2){
+            return 0;
+        } else if(value1<value2){
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
     /**
@@ -22,7 +33,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        return Math.max(value1,value2);
     }
 
     /**
@@ -31,7 +42,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        Arrays.sort(values);
+        return values[values.length-1];
     }
 
     /**
@@ -40,7 +52,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        return Arrays.stream(values).sum();
     }
 
     /**
@@ -49,7 +61,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int evenCounter = 0;
+        for(int i=0; i<values.length;i++){
+            if(values[i]%2==0){
+                evenCounter++;
+            }
+        }
+        int [] evenValues = new int[evenCounter];
+        int index = 0;
+        for(int i=0; i<values.length;i++){
+            if(values[i]%2==0){
+                evenValues[index]=values[i];
+                index++;
+            }
+        }
+        return evenValues;
     }
 
     /**
@@ -59,7 +85,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        long factorial=1;
+        if(initialVal==0){
+            return 1L;
+        } else {
+            for(int i=1; i<=initialVal;i++){
+                factorial=factorial*i;
+            }
+        }
+
+        return factorial;
     }
 
     /**
@@ -74,7 +109,20 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        ArrayList<Integer> fibonacciList= new ArrayList<>();
+        int counter1=0;
+        int counter2=1;
+        fibonacciList.add(counter1);
+        fibonacciList.add(counter2);
+        int fibonacciNumber;
+        for(int i=0; i<10; i++){
+            fibonacciNumber=counter1+counter2;
+            fibonacciList.add(fibonacciNumber);
+            counter1=counter2;
+            counter2=fibonacciNumber;
+        }
+
+        return fibonacciList.get(number);
     }
 
     /**
@@ -83,7 +131,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        Arrays.sort(values);
+        return values;
     }
 
     /**
@@ -94,7 +143,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        int counter=0;
+       for(int i=1;i<=number; i++){
+           if(number%i==0){
+               counter++;
+           }
+           if(counter>2){
+               return false;
+           }
+       } return true;
     }
 
     /**
@@ -104,6 +161,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int [] reverseArray = new int[values.length];
+        int reverseArrayCounter=0;
+        for(int i=reverseArray.length-1; i>-1;i--){
+            reverseArray[reverseArrayCounter]=values[i];
+            reverseArrayCounter++;
+        }
+        return reverseArray;
     }
 }
