@@ -17,7 +17,7 @@ public class SimpleMathService implements MathService {
     public int compare(int value1, int value2) {
         if(value1 == value2)
             return 0;
-        else if(value1<value2)
+        else if(value1 < value2)
             return -1;
         else
             return 1;
@@ -30,7 +30,7 @@ public class SimpleMathService implements MathService {
     @Override
     public int maxFrom(int value1, int value2) {
 
-        if(value1>=value2)
+        if(value1 >= value2)
             return value1;
         else
             return value2;
@@ -42,7 +42,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        int number = -1000000000;
+        int number = values[0];
         for(int item : values){
             if(item > number)
                 number = item;
@@ -70,12 +70,14 @@ public class SimpleMathService implements MathService {
     @Override
     public int[] getEvenDigits(int[] values) {
         int count = 0;
+
         for(int i=0; i<values.length; i++){
             if(values[i]%2==0)
                 count++;
         }
         int[] newArray = new int[count];
         int j=0;
+
         for(int i=0; i<values.length; i++){
             if(values[i]%2==0){
                 newArray[j] = values[i];
@@ -91,10 +93,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        if( initialVal <= 1 )     // base case
+        if( initialVal <= 1 )
             return 1;
         else
-            return initialVal * calcFibonacci( initialVal - 1 );
+            return initialVal * calcFactorial( initialVal - 1 );
     }
 
     /**
@@ -109,18 +111,19 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
+        int last = 1;
+        int next = 1;
+        int result = 0;
         if(number==0)
             return 0;
         else if (number <= 2)
             return 1;
-        int last = 1;
-        int next = 1;
-        int result = 0;
-        for (int i = 2; i < number; i++)
-        {
-            result = last + next;
-            last = next;
-            next = result;
+        else{
+            for (int i = 2; i < number; i++) {
+                result = last + next;
+                last = next;
+                next = result;
+            }
         }
         return result;
     }
@@ -132,6 +135,7 @@ public class SimpleMathService implements MathService {
 
     @Override
     public int[] sort(int[] values) {
+
         for (int i = values.length - 1; i >= 1; i--) {
             for (int y = 0; y < i; y++) {
                 if (values[y] > values[y + 1]) {
