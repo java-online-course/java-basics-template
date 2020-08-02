@@ -5,9 +5,10 @@ import java.util.Arrays;
 
 public class SimpleMathService implements MathService {
 
-    private boolean checkValuesLength(int [] values){
+    private boolean checkValuesLength(int[] values) {
         return values.length == 0;
     }
+
     /**
      * Метод возвращает 0, если value1 = value2.
      * Метод возвращает -1, если value1 < value2.
@@ -23,7 +24,9 @@ public class SimpleMathService implements MathService {
             return 0;
         } else if (value1 < value2) {
             return -1;
-        } else return 1;
+        } else {
+            return 1;
+        }
     }
 
     /**
@@ -32,7 +35,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-       return Math.max(value1, value2);
+        return Math.max(value1, value2);
     }
 
     /**
@@ -42,8 +45,8 @@ public class SimpleMathService implements MathService {
     @Override
     public int maxFrom(int[] values) {
         int maxValue = values[0];
-        for (int i = 1; i <values.length; i++) {
-            maxValue = Math.max(maxValue, values[i]);
+        for (int i = 1; i < values.length; i++) {
+            maxValue = maxFrom(maxValue, values[i]);
         }
         return maxValue;
     }
@@ -54,7 +57,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        if(checkValuesLength(values)) return 0;
+        if (checkValuesLength(values)) return 0;
         int sumValues = 0;
         for (int i = 0; i < values.length; i++) {
             sumValues += values[i];
@@ -69,7 +72,9 @@ public class SimpleMathService implements MathService {
 
     @Override
     public int[] getEvenDigits(int[] values) {
-        if(checkValuesLength(values)) return values;
+        if (checkValuesLength(values)) {
+            return values;
+        }
         int count = 0;
         for (int i = 0; i < values.length; i++) {
             if (values[i] % 2 == 0) {
@@ -96,7 +101,7 @@ public class SimpleMathService implements MathService {
     @Override
     public long calcFactorial(int initialVal) {
         long factorial = 1;
-        for (int i = 1; i <= initialVal; ++i) factorial *= i;
+        for (int i = 1; i <= initialVal; i++) factorial *= i;
         return factorial;
     }
 
@@ -112,9 +117,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        long oneStepBack = 0, twoStepBack= 1, res = 0;
+        long oneStepBack = 0, twoStepBack = 1, res = 0;
         if (number == 1 || number == 0) return number;
-        for(int i = 1; i < number; i++ ){
+        for (int i = 1; i < number; i++) {
             res = oneStepBack + twoStepBack;
             oneStepBack = twoStepBack;
             twoStepBack = res;
@@ -141,9 +146,9 @@ public class SimpleMathService implements MathService {
     @Override
     public boolean isPrimary(int number) {
         int tmp;
-        for (int i = 2; i <= number/2; i++){
+        for (int i = 2; i <= number / 2; i++) {
             tmp = number % i;
-            if (tmp == 0){
+            if (tmp == 0) {
                 return false;
             }
         }
@@ -157,7 +162,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        if(checkValuesLength(values)) return values;
+        if (checkValuesLength(values)) return values;
         int lengthValues = values.length;
         int[] newArray = new int[lengthValues];
         for (int i = 0; i < lengthValues; i++) {
