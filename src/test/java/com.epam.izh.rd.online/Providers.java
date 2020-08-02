@@ -66,6 +66,7 @@ public class Providers {
     public static Stream<Arguments> testSortProvider() {
         return Stream.of(
                 arguments(new int[]{}, new int[]{}),
+                arguments(null, null),
                 arguments(new int[]{-1, -3, 4, 8, 5, 22, -5}, new int[]{-5, -3, -1, 4, 5, 8, 22}),
                 arguments(new int[]{3, 4, 3, 4}, new int[]{3, 3, 4, 4})
         );

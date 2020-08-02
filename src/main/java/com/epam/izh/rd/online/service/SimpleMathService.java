@@ -57,7 +57,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        if (checkValuesLength(values)) return 0;
+        if (checkValuesLength(values)) {
+            return 0;
+        }
         int sumValues = 0;
         for (int i = 0; i < values.length; i++) {
             sumValues += values[i];
@@ -72,6 +74,9 @@ public class SimpleMathService implements MathService {
 
     @Override
     public int[] getEvenDigits(int[] values) {
+        if (values == null) {
+            return null;
+        }
         if (checkValuesLength(values)) {
             return values;
         }
@@ -135,6 +140,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
+        if (values == null) {
+            return null;
+        }
         if(checkValuesLength(values)) {
             return values;
         }
@@ -167,6 +175,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
+        if (values == null) {
+            return null;
+        }
         if (checkValuesLength(values)) return values;
         int lengthValues = values.length;
         int temp;
