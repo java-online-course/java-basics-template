@@ -44,7 +44,8 @@ public class Providers {
                 arguments(5, 120),
                 arguments(0, 1),
                 arguments(8, 40320),
-                arguments(9, 362880)
+                arguments(9, 362880),
+                arguments(20, 2432902008176640000L)
         );
     }
 
@@ -57,13 +58,15 @@ public class Providers {
                 arguments(4, 3),
                 arguments(5, 5),
                 arguments(7, 13),
-                arguments(11, 89)
+                arguments(11, 89),
+                arguments(50, 12586269025L)
         );
     }
 
     public static Stream<Arguments> testSortProvider() {
         return Stream.of(
                 arguments(new int[]{}, new int[]{}),
+                arguments(null, null),
                 arguments(new int[]{-1, -3, 4, 8, 5, 22, -5}, new int[]{-5, -3, -1, 4, 5, 8, 22}),
                 arguments(new int[]{3, 4, 3, 4}, new int[]{3, 3, 4, 4})
         );
