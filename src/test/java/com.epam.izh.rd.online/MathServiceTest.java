@@ -58,14 +58,14 @@ public class MathServiceTest {
     @ParameterizedTest
     @MethodSource("com.epam.izh.rd.online.Providers#testCalcFactorialProvider")
     @DisplayName("Тест метода MathService.calcFactorial(int initialVal)")
-    void testCalcFactorial(int param, int expected) {
+    void testCalcFactorial(int param, long expected) {
         assertEquals(expected, mathService.calcFactorial(param), "Для входого параметра: " + param);
     }
 
     @ParameterizedTest
     @MethodSource("com.epam.izh.rd.online.Providers#testCalcFibonacciProvider")
     @DisplayName("Тест метода MathService.calcFibonacci(int number)")
-    void testCalcFibonacci(int param, int expected) {
+    void testCalcFibonacci(int param, long expected) {
         assertEquals(expected, mathService.calcFibonacci(param), "Для входого параметра: " + param);
     }
 

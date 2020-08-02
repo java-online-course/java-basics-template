@@ -44,7 +44,8 @@ public class Providers {
                 arguments(5, 120),
                 arguments(0, 1),
                 arguments(8, 40320),
-                arguments(9, 362880)
+                arguments(9, 362880),
+                arguments(20, 2432902008176640000L)
         );
     }
 
@@ -57,7 +58,8 @@ public class Providers {
                 arguments(4, 3),
                 arguments(5, 5),
                 arguments(7, 13),
-                arguments(11, 89)
+                arguments(11, 89),
+                arguments(50, 12586269025L)
         );
     }
 
