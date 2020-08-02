@@ -164,10 +164,12 @@ public class SimpleMathService implements MathService {
     public int[] reverseArray(int[] values) {
         if (checkValuesLength(values)) return values;
         int lengthValues = values.length;
-        int[] newArray = new int[lengthValues];
-        for (int i = 0; i < lengthValues; i++) {
-            newArray[i] = values[lengthValues - i - 1];
+        int temp;
+        for (int i = 0; i < lengthValues / 2; i++) {
+            temp = values[i];
+            values[i] = values[lengthValues - i - 1];
+            values[lengthValues - i - 1] = temp;
         }
-        return newArray;
+        return values;
     }
 }
