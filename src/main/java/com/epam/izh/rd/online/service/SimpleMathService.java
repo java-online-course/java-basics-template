@@ -101,7 +101,9 @@ public class SimpleMathService implements MathService {
     @Override
     public long calcFactorial(int initialVal) {
         long factorial = 1;
-        for (int i = 1; i <= initialVal; i++) factorial *= i;
+        for (int i = 1; i <= initialVal; i++) {
+            factorial *= i;
+        }
         return factorial;
     }
 
@@ -133,6 +135,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
+        if(checkValuesLength(values)) {
+            return values;
+        }
         Arrays.sort(values);
         return values;
     }
