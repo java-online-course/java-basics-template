@@ -44,8 +44,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        int sum = values[0];
-        for (int i = 1; i < values.length; i++) {
+        int sum = 0;
+        for (int i = 0; i < values.length; i++) {
             sum += values[i];
         }
         return sum;
@@ -55,7 +55,6 @@ public class SimpleMathService implements MathService {
      * Метод фильтрует массив, оставляя только четные числа.
      * Например для списка {-1, -3, 4, 8, 5, 22, 17} метод должен вернуть {4, 8, 22}
      */
-    // TODO Краще перероби
     @Override
     public int[] getEvenDigits(int[] values) {
         List<Integer> temp = new ArrayList<>();
