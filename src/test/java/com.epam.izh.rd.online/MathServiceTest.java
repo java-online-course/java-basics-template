@@ -30,7 +30,7 @@ public class MathServiceTest {
 
     @Test
     @DisplayName("Тест метода MathService.maxFrom(int value1, int value2)")
-    void testMaxFrom() {
+    void  testMaxFrom() {
         assertEquals(2, mathService.maxFrom(-10, 2), "Для входных параметров: " + -10 + " " + 2);
     }
 
