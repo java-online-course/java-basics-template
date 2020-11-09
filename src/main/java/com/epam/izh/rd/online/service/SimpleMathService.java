@@ -59,7 +59,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return Arrays.stream(values).filter(value -> value % 2 == 0).toArray();
+        int[] evenDigits = new int[0];
+        for (int value : values) {
+            if (value % 2 == 0) {
+                evenDigits = Arrays.copyOf(evenDigits, evenDigits.length + 1);
+                evenDigits[evenDigits.length - 1] = value;
+            }
+        }
+
+        return evenDigits;
     }
 
     /**
