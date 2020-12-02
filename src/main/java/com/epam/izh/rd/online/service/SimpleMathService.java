@@ -19,6 +19,7 @@ public class SimpleMathService implements MathService {
         return (value1 < value2) ? -1 : ((value1 == value2) ? 0 : 1);
     }
 
+
     /**
      * Метод возвращает максимальное число из пары.
      * Например для списка (-1, 2) метод должен вернуть 2
@@ -27,6 +28,7 @@ public class SimpleMathService implements MathService {
     public int maxFrom(int value1, int value2) {
         return  (value1 > value2)? value1:value2;
     }
+
 
     /**
      * Метод возвращает максимальное число из переданного массива.
