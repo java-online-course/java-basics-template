@@ -118,8 +118,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        Arrays.sort(values);
-        return values;
+        int[] arr = Arrays.copyOf(values, values.length);
+        Arrays.sort(arr);
+        return arr;
     }
 
     /**
