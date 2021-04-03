@@ -1,5 +1,9 @@
 package com.epam.izh.rd.online.service;
 
+//import java.math.BigInteger;
+
+import static java.lang.Math.sqrt;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,8 +17,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
-    }
+        if (value1 == value2) {
+            return 0;}
+        else if (value1 < value2) {
+            return  -1;}
+        else {
+            return 1; }
+     }
 
     /**
      * Метод возвращает максимальное число из пары.
@@ -22,7 +31,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        if (value1 > value2) {
+            return value1; }
+        else {
+            return value2;
+        }
     }
 
     /**
@@ -31,8 +44,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int maxValue = 0;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] > maxValue) {
+                maxValue = values[i];
+            }
+        }
+        return maxValue;
     }
+
 
     /**
      * Метод возвращает сумму чисел массива.
@@ -40,7 +60,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int sumArray = 0;
+        for (int i=0; i < values.length; i++){
+            sumArray +=values[i];
+        }
+        return sumArray;
     }
 
     /**
@@ -49,7 +73,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int countOfEven = 0;
+        for (int i =0; i < values.length; i++){
+            if (values[i] % 2 == 0) {
+                countOfEven++;
+            }
+        }
+        int[] evenArray = new int[countOfEven];
+        for (int i = 0, j = 0; i < values.length; i++){
+            if (values[i] % 2 == 0){
+                evenArray[j] = values[i];
+                j++;
+            }
+        }
+
+        return  evenArray;
     }
 
     /**
@@ -59,7 +97,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        if (initialVal <= 1) {
+            return 1;
+        } else {
+            return initialVal * calcFactorial(initialVal - 1);
+        }
     }
 
     /**
@@ -74,7 +116,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number <= 0) {
+            return 0;
+        } else if (number == 1) {
+            return 1;
+        } else  {
+            return calcFibonacci(number - 1) + calcFibonacci(number - 2);
+        }
     }
 
     /**
@@ -83,7 +131,20 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length; i++){
+            int min = values[i];
+            int minId = i;
+            for (int j = i + 1; j < values.length; j++) {
+                if (values[j] < min) {
+                    min = values[j];
+                    minId = j;
+                }
+            }
+            int temp = values[i];
+            values[i] = min;
+            values[minId] = temp;
+        }
+        return values;
     }
 
     /**
@@ -94,8 +155,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+            for (int i = 2; i <= sqrt(number); i++){
+            if (number % i == 0) return false;
+            }
+            return true;
     }
+
 
     /**
      * Метод возвращает массив, в котором элементы расположены в обратном порядке.
@@ -104,6 +169,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int[] reverseArray = new int[values.length];
+        int reveseCaunt = values.length - 1;
+        for (int i = 0; i < values.length; i++){
+            reverseArray[reveseCaunt] = values[i];
+            reveseCaunt--;
+        }
+        return reverseArray;
+
     }
 }
