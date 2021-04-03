@@ -1,6 +1,6 @@
 package com.epam.izh.rd.online.service;
 
-import java.math.BigInteger;
+//import java.math.BigInteger;
 
 import static java.lang.Math.sqrt;
 
@@ -80,6 +80,12 @@ public class SimpleMathService implements MathService {
             }
         }
         int[] evenArray = new int[countOfEven];
+        for (int i = 0, j = 0; i < values.length; i++){
+            if (values[i] % 2 == 0){
+                evenArray[j] = values[i];
+                j++;
+            }
+        }
 
         return  evenArray;
     }
@@ -125,7 +131,20 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length; i++){
+            int min = values[i];
+            int minId = i;
+            for (int j = i + 1; j < values.length; j++) {
+                if (values[j] < min) {
+                    min = values[j];
+                    minId = j;
+                }
+            }
+            int temp = values[i];
+            values[i] = min;
+            values[minId] = temp;
+        }
+        return values;
     }
 
     /**
