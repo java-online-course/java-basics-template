@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import java.util.Arrays;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -12,8 +14,19 @@ public class SimpleMathService implements MathService {
      * Например для (3, 1) метод должен вернуть 1;
      */
     @Override
-    public int compare(int value1, int value2) {
-        return -2;
+    public int compare(int value1, int value2)
+    {
+        int isMax=0;
+        if(value1 < value2){
+            isMax=-1;
+        }
+        if(value1 > value2){
+            isMax=1;
+        }
+        if(value1 == value2){
+            isMax=0;
+        }
+        return isMax;
     }
 
     /**
@@ -22,7 +35,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        return Math.max(value1, value2);
     }
 
     /**
@@ -31,7 +44,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        Arrays.sort(values);
+        int maxValue= values[values.length-1];
+        return maxValue;
     }
 
     /**
@@ -40,8 +55,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
-    }
+            int sumOfArray=0;
+            for(int i=0; i<values.length;i++){
+                sumOfArray+= values[i];
+            }
+            return sumOfArray;
+        }
 
     /**
      * Метод фильтрует массив, оставляя только четные числа.
@@ -49,9 +68,18 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int count = 0, index = 0;
+        for(int elem:values){
+            if(elem % 2 ==0) count++;
+        }
+        int[] result = new int[count];
+        for(int elem:values){
+            if (elem % 2 == 0){
+                result[index++] = elem;
+            }
+        }
+        return result;
     }
-
     /**
      * Метод считает факториал из заданного числа.
      * Например для числа 5 метод должен вернуть 120.
@@ -59,7 +87,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int result = 1;
+        for (int i = 1; i <=initialVal; i++){
+            result = result*i;
+        }
+        return result;
     }
 
     /**
@@ -74,7 +106,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        long first = 0;
+        long second = 1;
+        long result = number;
+        for (int i = 1; i < number; i++) {
+            result = first + second;
+            first = second;
+            second = result;
+        }
+        return result;
     }
 
     /**
@@ -83,7 +123,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        Arrays.sort(values);
+        return values;
     }
 
     /**
@@ -94,7 +135,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        for (int i = 2; i < number; i++)
+        {
+            if (number % i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -104,6 +152,18 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length / 2; i++) ;
+        {
+            int start = 0;
+            int end = values.length - 1;
+            while (start < end) {
+                int temp = values[start];
+                values[start] = values[end];
+                values[end] = temp;
+                start++;
+                end--;
+            }
+            return values;
+        }
     }
 }
