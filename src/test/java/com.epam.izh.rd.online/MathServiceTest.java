@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MathServiceTest {
 
-    private static MathService mathService;
+    private static MathService mathService = new SimpleMathService();
 
     @BeforeAll
     static void setup() {
@@ -59,14 +59,14 @@ public class MathServiceTest {
     @MethodSource("com.epam.izh.rd.online.Providers#testCalcFactorialProvider")
     @DisplayName("Тест метода MathService.calcFactorial(int initialVal)")
     void testCalcFactorial(int param, int expected) {
-        assertEquals(expected, mathService.calcFactorial(param), "Для входого параметра: " + param);
+        assertEquals(expected, mathService.calcFactorial(param), "Для входного параметра: " + param);
     }
 
     @ParameterizedTest
     @MethodSource("com.epam.izh.rd.online.Providers#testCalcFibonacciProvider")
     @DisplayName("Тест метода MathService.calcFibonacci(int number)")
     void testCalcFibonacci(int param, int expected) {
-        assertEquals(expected, mathService.calcFibonacci(param), "Для входого параметра: " + param);
+        assertEquals(expected, mathService.calcFibonacci(param), "Для входного параметра: " + param);
     }
 
     @ParameterizedTest
@@ -80,7 +80,7 @@ public class MathServiceTest {
     @MethodSource("com.epam.izh.rd.online.Providers#testIsPrimaryProvider")
     @DisplayName("Тест метода MathService.isPrimary(int number)")
     void testIsPrimary(int param, boolean expected) {
-        assertEquals(expected, mathService.isPrimary(param), "Для входого параметра: " + param);
+        assertEquals(expected, mathService.isPrimary(param), "Для входного параметра: " + param);
     }
 
     @ParameterizedTest

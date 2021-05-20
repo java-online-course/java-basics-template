@@ -1,5 +1,7 @@
 package com.epam.izh.rd.online.service;
 
+import static java.lang.Math.sqrt;
+
 public class SimpleMathService implements MathService {
 
     /**
@@ -13,7 +15,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        if (value1 == value2) {
+            return 0;}
+        else if (value1 < value2) {
+            return -1;}
+        else {
+            return 1;}
+
     }
 
     /**
@@ -22,7 +30,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        if (value1 > value2) {
+            return value1; }
+        else {
+            return value2;
+        }
     }
 
     /**
@@ -31,8 +43,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int maxValue = 0;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] > maxValue) {
+                maxValue = values[i];
+            }
+        }
+        return maxValue;
     }
+
 
     /**
      * Метод возвращает сумму чисел массива.
@@ -40,62 +59,93 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int sumArray = 0;
+        for (int i=0; i < values.length; i++){
+            sumArray +=values[i];
+        }
+        return sumArray;
     }
 
     /**
-     * Метод фильтрует массив, оставляя только четные числа.
-     * Например для списка {-1, -3, 4, 8, 5, 22, 17} метод должен вернуть {4, 8, 22}
+     @@ -49,7 +73,21 @@ public int sum(int[] values) {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int countOfEven = 0;
+        for (int i =0; i < values.length; i++){
+            if (values[i] % 2 == 0) {
+                countOfEven++;
+            }
+        }
+        int[] evenArray = new int[countOfEven];
+        for (int i = 0, j = 0; i < values.length; i++){
+            if (values[i] % 2 == 0){
+                evenArray[j] = values[i];
+                j++;
+            }
+        }
+
+        return  evenArray;
     }
 
     /**
-     * Метод считает факториал из заданного числа.
-     * Например для числа 5 метод должен вернуть 120.
-     * Факториал 0 должен быть равен 1.
+     @@ -59,7 +97,11 @@ public int sum(int[] values) {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        if (initialVal <= 1) {
+            return 1;
+        } else {
+            return initialVal * calcFactorial(initialVal - 1);
+        }
     }
 
     /**
-     * Метод возвращает число, которе находится на заданной позиции (счет начинается с нуля) в ряду фибоначчи.
-     *
-     * Ряд фибоначчи - ряд, следующие элементы которого состоят из суммы двух предыдущих.
-     * Ряд начинается 0 и 1.
-     * Пример 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ...
-     *
-     * Для числа 9 метод должен вернуть 34
-     * Для числа 0 метод должен вернуть 0
+     @@ -74,7 +116,13 @@ public long calcFactorial(int initialVal) {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number <= 0) {
+            return 0;
+        } else if (number == 1) {
+            return 1;
+        } else  {
+            return calcFibonacci(number - 1) + calcFibonacci(number - 2);
+        }
     }
 
     /**
-     * Метод возвращает отсортированный по возрастанию массив.
-     * Например для массива {-1, -3, 4, 8, 5, 22, -5} метод должен вернуть {-5, -3, -1, 4, 5, 8, 22}
+     @@ -83,7 +131,20 @@ public long calcFibonacci(int number) {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        for (int i = 0; i < values.length; i++){
+            int min = values[i];
+            int minId = i;
+            for (int j = i + 1; j < values.length; j++) {
+                if (values[j] < min) {
+                    min = values[j];
+                    minId = j;
+                }
+            }
+            int temp = values[i];
+            values[i] = min;
+            values[minId] = temp;
+        }
+        return values;
     }
 
     /**
-     * Метод определяет, является ли заданное число простым.
-     * Простое число - число, которое делится только на 1 и на само себя.
-     *
-     * Например для числа 22 вернется false, а для числа 23 true.
+     @@ -94,16 +155,27 @@ public long calcFibonacci(int number) {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        for (int i = 2; i <= sqrt(number); i++){
+            if (number % i == 0) return false;
+        }
+        return true;
     }
+
 
     /**
      * Метод возвращает массив, в котором элементы расположены в обратном порядке.
@@ -104,6 +154,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int[] reverseArray = new int[values.length];
+        int reveseCaunt = values.length - 1;
+        for (int i = 0; i < values.length; i++){
+            reverseArray[reveseCaunt] = values[i];
+            reveseCaunt--;
+        }
+        return reverseArray;
+
     }
 }
