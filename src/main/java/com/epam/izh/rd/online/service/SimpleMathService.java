@@ -115,7 +115,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+       for (int i = 0; i < values.length; i++) {
+           for (int k =0; k < values.length; k++) {
+               if (values[i] < values[k]) {
+                   int a = values[i];
+                   values[i] = values[k];
+                   values[k] = a;
+               }
+           }
+       }
+        return values;
     }
 
     /**
