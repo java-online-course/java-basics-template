@@ -1,6 +1,8 @@
 package com.epam.izh.rd.online.service;
 
+
 public class SimpleMathService implements MathService {
+
 
     /**
      * Метод возвращает 0, если value1 = value2.
@@ -13,8 +15,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        int i;
+        if (value1 == value2) {
+            i = 0;
+        } else if ( value1 < value2){
+            i = -1;
+        } else  {
+            i = 1;
+        } return i;
     }
+
 
     /**
      * Метод возвращает максимальное число из пары.
@@ -22,7 +32,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        return Math.max(value1, value2);
     }
 
     /**
@@ -31,7 +41,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int o = values[0];
+        for (int i = 1; i < values.length; i++){
+            o = Math.max(o, values[i]);
+        } return o;
     }
 
     /**
@@ -40,8 +53,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int sum = 0;
+        for (int value : values) {
+            sum = sum + value;
+        }
+        return sum;
     }
+
 
     /**
      * Метод фильтрует массив, оставляя только четные числа.
@@ -49,8 +67,24 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
-    }
+        int n = 0;
+        for (int value : values) {
+            if (value % 2 == 0) {
+                n++; // Узнал длину массива
+            }
+        }
+        int[] newValue = new int[n];
+        int index = 0;
+        for (int i = 0; i < n+1; i++){
+            if (values.length < 1){
+                return values;
+            } else if (values[i]%2 == 0){
+                newValue[index] = values[i]; // Если число четное, присваиваем его значение в индекс нового массива
+                index++;
+            }
+        }
+        return newValue;
+   }
 
     /**
      * Метод считает факториал из заданного числа.
@@ -59,7 +93,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        int result = 1;
+        for (int i = 1; i <= initialVal; i ++) {
+            result = result * i;
+        } return result;
     }
 
     /**
@@ -74,7 +111,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        long[] array = new long[number + 2];
+        array[0] = 0;
+        array[1] = 1;
+        for (int i = 2; i <= number; i++){
+            array[i] = array[i - 1] + array[i -2];
+        }
+        return array[number];
     }
 
     /**
@@ -83,7 +126,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        boolean isSorted = false;
+        int buf;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < values.length - 1; i++) {
+                if (values[i] > values[i + 1]) {
+                    isSorted = false;
+
+                    buf = values[i];
+                    values[i] = values[i + 1];
+                    values[i + 1] = buf;
+                }
+            }
+        }
+        return values;
     }
 
     /**
@@ -94,7 +151,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        if (number <=2){
+            return true;}
+        for (int i = 2; i < number; i++){
+            if (number % i == 0){
+                return false; }
+        }
+        return true;
     }
 
     /**
@@ -104,6 +167,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int n = values.length;
+        int temp;
+        for (int i = 0; i < n/2; i++){
+            temp = values[n - i - 1];
+            values[n - i - 1] = values[i];
+            values[i] = temp;
+        }
+        return values;
     }
 }
