@@ -1,6 +1,12 @@
 package com.epam.izh.rd.online.service;
 
+import sun.security.util.ArrayUtil;
+
+import java.io.BufferedReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.LongStream;
 
 public class SimpleMathService implements MathService {
@@ -165,6 +171,19 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
-    }
+            for (int i =0; i < values.length / 2; i++);
+        {
+            int start = 0;
+            int end = values.length - 1;
+            while (start < end) {
+                int temp = values[start];
+                values[start] = values[end];
+                values[end] = temp;
+                start++;
+                end--;
+            }
+            return values;
+        }
+        }
+
 }
