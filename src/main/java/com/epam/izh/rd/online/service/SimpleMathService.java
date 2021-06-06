@@ -51,7 +51,8 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int summa = Arrays.stream(values).sum();
+        return summa;
     }
 
     /**
