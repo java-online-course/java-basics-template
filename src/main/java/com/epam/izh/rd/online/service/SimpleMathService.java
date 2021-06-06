@@ -1,6 +1,7 @@
 package com.epam.izh.rd.online.service;
 
 import java.util.Arrays;
+import java.util.stream.LongStream;
 
 public class SimpleMathService implements MathService {
 
@@ -81,8 +82,9 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
-    }
+        return LongStream.rangeClosed(1, initialVal)
+                .reduce(1, (long x, long y) -> x * y);
+        }
 
     /**
      * Метод возвращает число, которе находится на заданной позиции (счет начинается с нуля) в ряду фибоначчи.
