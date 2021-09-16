@@ -83,16 +83,16 @@ public class SimpleMathService implements MathService {
                 numberCounter++;
             }
         }
-        int[] evenArray = new int[numberCounter];
+        int[] newArray = new int[numberCounter];
         int j = 0;
         for (int i = 0; i < values.length; i++) {
             if (values[i] % 2 == 0) {
-                evenArray[j] = (int) values[i];
+                newArray[j] = (int) values[i];
                 j++;
             }
 
         }
-        return evenArray;
+        return newArray;
     }
 
     /**
@@ -101,14 +101,14 @@ public class SimpleMathService implements MathService {
      * Факториал 0 должен быть равен 1.
      */
 
-        @Override
-        public long calcFactorial(int initialVal) {
-            int result = 1;
-            for (int i = 1; i <= initialVal; i++) {
-                result *= i;
-            }
-            return result;
+    @Override
+    public long calcFactorial(int initialVal) {
+        int result = 1;
+        for (int i = 1; i <= initialVal; i++) {
+            result *= i;
         }
+        return result;
+    }
 
 
     /**
@@ -123,7 +123,25 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        long firstValue = 0;
+        long secondValue = 1;
+        long result = 0;
+
+        if (number == 0) {
+            return firstValue;
+        }
+
+        if (number == 1) {
+            return secondValue;
+        }
+
+        for (int i = 0; i < number - 1; i++) {
+            result = firstValue + secondValue;
+            firstValue = secondValue;
+            secondValue = result;
+        }
+
+        return result;
     }
 
     /**
@@ -135,6 +153,7 @@ public class SimpleMathService implements MathService {
         Arrays.sort(values);
         return values;
     }
+
     /**
      * Метод определяет, является ли заданное число простым.
      * Простое число - число, которое делится только на 1 и на само себя.
@@ -144,15 +163,12 @@ public class SimpleMathService implements MathService {
     @Override
     public boolean isPrimary(int number) {
         {
-            for (int i = 2; i < number; i++)  //бежим по циклу начиная от 2 и до самого числа не включительно
-            {
-                if (number % i == 0)  //если остаток от деления числа на значение шага цикла равен нулю, то
-                {
-                    return false;  //вернуть false, переданное число простым не является
+            for (int i = 2; i < number; i++) {
+                if (number % i == 0) {
+                    return false;
                 }
             }
-            //если же ни одного значения, удоволетворяющего условию выше, не было найдено, то
-            return true;  //вернуть true, переданное число простое
+            return true;
         }
 
     }
@@ -165,10 +181,10 @@ public class SimpleMathService implements MathService {
     @Override
     public int[] reverseArray(int[] values) {
         int[] reverseArray = new int[values.length];
-        int reveseCaunt = values.length - 1;
-        for (int i = 0; i < values.length; i++){
-            reverseArray[reveseCaunt] = values[i];
-            reveseCaunt--;
+        int reverseCount = values.length - 1;
+        for (int i = 0; i < values.length; i++) {
+            reverseArray[reverseCount] = values[i];
+            reverseCount--;
         }
         return reverseArray;
 
