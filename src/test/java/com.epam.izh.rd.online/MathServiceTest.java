@@ -19,6 +19,7 @@ public class MathServiceTest {
     @BeforeAll
     static void setup() {
         mathService = new SimpleMathService();
+
     }
 
     @ParameterizedTest
