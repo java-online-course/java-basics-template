@@ -43,7 +43,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int maximumValue = values[0];                                   // Проверку начнём с 1 значения массива
+        for (int maxIndex = 0; maxIndex < values.length; maxIndex++) {
+            if (maximumValue <= values[maxIndex]) {
+                maximumValue = values[maxIndex];
+            }
+        }
+        return maximumValue;
     }
 
     /**
