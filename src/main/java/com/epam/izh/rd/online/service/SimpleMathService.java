@@ -28,7 +28,13 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        if (value1 == value2) {         // А если занения переменных равны?
+            return 0;
+        } else if (value1 < value2) {
+            return value2;
+        } else {
+            return value1;
+        }
     }
 
     /**
