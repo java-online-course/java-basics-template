@@ -70,7 +70,24 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int evenDigitsCounter = 0;                      // Тут сколько чётных чисел
+
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0) {
+                evenDigitsCounter++;
+            }
+        }
+
+        int evenDigits[] = new int[evenDigitsCounter]; // Тут результирующий массив
+        int c = 0;                                     // Тут счётчик индекса для результирующего массива
+
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0) {
+                evenDigits[c] = values[i];
+                c++;
+            }
+        }
+        return evenDigits;
     }
 
     /**
