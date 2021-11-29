@@ -97,7 +97,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        long factorial = 1;
+        for (int c = 1; c <= initialVal; c++) {
+            factorial *= c;
+        }
+        return factorial;
     }
 
     /**
