@@ -116,14 +116,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        if (number == 0) {
+        if (number == 0) {  // защита от нуля
             return 0;
         }
 
         long a = 0;
         long fibonacci = 1;
 
-        for (int i = 2; i <= number; ++i) {
+        for (int i = 2; i <= number; i++) { // складываем и сохраняем
             long n = a + fibonacci;
             a = fibonacci;
             fibonacci = n;
@@ -175,6 +175,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+
+        int buffer[] = new int[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+            buffer[i] = values[values.length - 1 -i];
+        }
+        return buffer;
     }
 }
