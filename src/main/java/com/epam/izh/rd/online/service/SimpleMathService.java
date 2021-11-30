@@ -157,15 +157,12 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-
-        boolean isItPrimary = true; //если дальше проверку пройдёт, то число натуральное
-
         for (int i = 2; i < number - 1; i++) {
             if (number % i == 0) {
-                isItPrimary = false;
+                return false;
             }
         }
-        return isItPrimary;
+        return true;
     }
 
     /**
@@ -179,7 +176,7 @@ public class SimpleMathService implements MathService {
         int buffer[] = new int[values.length];
 
         for (int i = 0; i < values.length; i++) {
-            buffer[i] = values[values.length - 1 -i];
+            buffer[i] = values[values.length - 1 - i];
         }
         return buffer;
     }
