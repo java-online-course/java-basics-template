@@ -157,7 +157,15 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+
+        boolean isItPrimary = true; //если дальше проверку пройдёт, то число натуральное
+
+        for (int i = 2; i < number - 1; i++) {
+            if (number % i == 0) {
+                isItPrimary = false;
+            }
+        }
+        return isItPrimary;
     }
 
     /**
