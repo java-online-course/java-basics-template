@@ -137,7 +137,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        for (int i = values.length - 1; i > 0; i--) {   // каждый проход уменьшает сравниваемую область массива
+            for (int j = 0; j < i; j++) {               // с помощью временной переменной переставляем максимальное
+                if (values[j] > values[j + 1]) {        // значение правее
+                    int buffer = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = buffer;
+                }
+            }
+        }
+        return values;
     }
 
     /**
