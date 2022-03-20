@@ -73,14 +73,14 @@ public class SimpleMathService implements MathService {
             }
         }
 
-            int[] evenArr = new int[evenSize];
-            int i = 0;
+        int[] evenArr = new int[evenSize];
+        int i = 0;
 
-            for (int elementForEven : values) {
-                if (elementForEven % 2 == 0) {
-                    evenArr[i++] = elementForEven;
-                }
+        for (int elementForEven : values) {
+            if (elementForEven % 2 == 0) {
+                evenArr[i++] = elementForEven;
             }
+        }
         return evenArr;
     }
 
@@ -91,7 +91,17 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+
+        long factorial = 1;
+
+        if (initialVal == 0) {
+            return 1;
+        } else if (initialVal > 0) {
+            for (int digitforNotChangeIV = initialVal; digitforNotChangeIV > 0; digitforNotChangeIV--) {
+                factorial *= digitforNotChangeIV;
+            }
+        }
+        return factorial;
     }
 
     /**
