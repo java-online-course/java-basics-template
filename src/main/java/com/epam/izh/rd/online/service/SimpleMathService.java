@@ -116,7 +116,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        long previous = 0;
+        long next = 1;
+        long current = 0;
+        if (number == 0) {
+            return 0;
+        } else if (number == 1) {
+            return 1;
+        } else if (number > 1) {
+            for (int i = 1; i != number; i++) {
+                current = previous + next;
+                previous = next;
+                next = current;
+            }
+        }
+        return current;
     }
 
     /**
