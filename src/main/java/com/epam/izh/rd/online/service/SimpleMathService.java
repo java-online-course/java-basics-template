@@ -139,7 +139,22 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        int[] forSort = new int[values.length];
+        for (int i = 0; i < forSort.length; i++) {
+            forSort[i]=values[i];
+        }
+
+        //Insertion Sort
+        for (int j = 1; j < forSort.length; j++) {
+            int current = forSort[j];
+            int k = j - 1;
+            while (k >= 0 && current < forSort[k]) {
+                forSort[k + 1] = forSort[k];
+                k--;
+            }
+            forSort[k + 1] = current;
+        }
+        return forSort;
     }
 
     /**
