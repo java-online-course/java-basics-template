@@ -141,7 +141,7 @@ public class SimpleMathService implements MathService {
     public int[] sort(int[] values) {
         int[] forSort = new int[values.length];
         for (int i = 0; i < forSort.length; i++) {
-            forSort[i]=values[i];
+            forSort[i] = values[i];
         }
 
         //Insertion Sort
@@ -165,7 +165,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        boolean check = true;
+        for (int j = 2; j <= number / j; j++) {
+            if ((number % j) == 0) {
+                check = false;
+                break;
+            }
+        }
+        return check;
     }
 
     /**
